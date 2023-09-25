@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morgan.iterone.mapper.GameMapper">
+
+    <select id="queryGameList" resultType="com.morgan.iterone.pojo.Game">
+        select * from Game;
+    </select>
+
+    <select id="queryGameByGname" resultType="com.morgan.iterone.pojo.Game">
+        select * from Game where gname=#{gname}
+    </select>
+
+    <select id="queryGameByGameID" resultType="com.morgan.iterone.pojo.Game">
+        select * from Game where gameID=#{gameID}
+    </select>
+
+    <select id="queryGameSearch" resultType="com.morgan.iterone.pojo.Game">
+        select * from Game where gname like #{search}
+    </select>
+
+    <select id="queryGameFilter" resultType="com.morgan.iterone.pojo.Game">
+        select * from Game where category like #{category} and genre= like #{genre}
+    </select>
+
+    <select id="queryGameCate" resultType="com.morgan.iterone.pojo.Game">
+        select * from Game where category like #{search}
+    </select>
+
+    <select id="queryGameGenre" resultType="com.morgan.iterone.pojo.Game">
+        select * from Game where genre= like #{search}
+    </select>
+
+    <insert id="addGame" parameterType="com.morgan.iterone.pojo.Game">
+        insert into Game (gameID, gname, category, genre, intro) values (null,#{gname},#{category},#{genre},#{intro})
+    </insert>
+
+    <update id="updateGame" parameterType="com.morgan.iterone.pojo.Game">
+        update Game set gname=#{gname},category=#{category},genre=#{genre},intro=#{intro} where gameID=#{gameID}
+    </update>
+
+    <select id="queryEnumeration" resultType="com.morgan.iterone.pojo.Enumeration">
+        select * from Enumeration where etype=#{etype}
+    </select>
+
+
+
+</mapper>

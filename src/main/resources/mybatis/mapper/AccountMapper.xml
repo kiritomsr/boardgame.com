@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morgan.iterone.mapper.AccountMapper">
+
+    <select id="queryUserList" resultType="com.morgan.iterone.pojo.Account">
+        select * from Account
+    </select>
+
+    <select id="queryByUsername" resultType="com.morgan.iterone.pojo.Account">
+        select * from Account where username=#{username}
+    </select>
+
+    <select id="queryByUserID" resultType="com.morgan.iterone.pojo.Account">
+        select * from Account where userID=#{userID}
+    </select>
+
+    <insert id="addAccount" parameterType="com.morgan.iterone.pojo.Account">
+        insert into Account (userID, username, password, email, phone) values (null,#{username},#{password},#{email},#{phone})
+    </insert>
+
+    <update id="updateAccount" parameterType="com.morgan.iterone.pojo.Account">
+        update Account set password=#{password},email=#{email},phone=#{phone} where userID=#{userID}
+    </update>
+
+
+</mapper>

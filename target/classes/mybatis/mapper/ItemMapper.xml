@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morgan.iterone.mapper.ItemMapper">
+
+    <select id="queryItemList" resultType="com.morgan.iterone.pojo.Item">
+        select * from Item;
+    </select>
+
+    <select id="queryItemByCollectID" resultType="com.morgan.iterone.pojo.Item">
+        select * from Item where collectID=#{collectID}
+    </select>
+
+    <select id="queryItemById" resultType="com.morgan.iterone.pojo.Item">
+        select * from Item where itemID=#{itemId}
+    </select>
+
+    <select id="queryItemSearch" resultType="com.morgan.iterone.pojo.Item">
+        select * from Item where intro like #{search}
+    </select>
+
+    <select id="queryItemFilter" resultType="com.morgan.iterone.pojo.Item">
+        select * from Item where type=#{type}
+    </select>
+
+    <insert id="addItem" parameterType="com.morgan.iterone.pojo.Item">
+        insert into Item (itemID, collectID, type, intro, picture) values (null, #{collectID}, #{type}, #{intro}, #{picture})
+    </insert>
+
+    <update id="updateItem" parameterType="com.morgan.iterone.pojo.Item">
+        update Item set collectID=#{collectID}, type=#{type}, intro=#{intro}, picture=#{picture} where itemID=#{itemID}
+    </update>
+
+</mapper>

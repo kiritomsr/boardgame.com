@@ -1,0 +1,121 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Shelf</title>
+
+</head>
+
+<body>
+<header class="header-area" th:fragment="header-content">
+    <div class="container">
+        <div class="header-large-device">
+
+            <div class="header-bottom">
+                <div class="row align-items-center">
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="logo">
+                            <a href="/"><img src="/assets/images/logo/logo.png" alt="logo"></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="main-menu main-menu-padding-1 main-menu-lh-1">
+                            <nav>
+                                <ul>
+                                    <li><a href="index-2.html">News </a></li>
+
+                                    <li><a href="/gameLoad">Games </a></li>
+
+                                    <li><a href="contact.html">Collection </a></li>
+
+                                    <li><a href="/communityLoad">Communities </a></li>
+
+                                    <li><a href="blog.html">Stores </a></li>
+
+                                    <li><a href="about-us">About Us </a></li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-2 col-lg-3">
+                        <div class="header-action header-action-flex header-action-mrg-right">
+                            <div class="same-style-2 header-search-1">
+                                <a class="search-toggle" href="#">
+                                    <i class="icon-magnifier s-open"></i>
+                                    <i class="icon_close s-close"></i>
+                                </a>
+                                <div class="search-wrap-1">
+                                    <form action="#">
+                                        <input placeholder="Search" type="text">
+                                        <button class="button-search"><i class="icon-magnifier"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="same-style-2">
+                                <a href="/centershow"><i class="icon-user"></i></a>
+                            </div>
+
+                            <div class="same-style-2 ">
+                                <a href="/sign"><i class="icon-login"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-small-device small-device-ptb-1">
+            <div class="row align-items-center">
+                <div class="col-5">
+                    <div class="mobile-logo">
+                        <a href="index.html">
+                            <img alt="" src="/assets/images/logo/logo.png">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div class="header-action header-action-flex">
+                        <div class="same-style-2 main-menu-icon">
+                            <a class="mobile-header-button-active" href="#"><i class="icon-menu"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu start -->
+        <div class="mobile-header-active mobile-header-wrapper-style">
+            <div class="clickalbe-sidebar-wrap">
+                <a class="sidebar-close"><i class="icon_close"></i></a>
+                <div class="mobile-header-content-area">
+                    <div class="mobile-search mobile-header-padding-border-1">
+                        <form class="search-form" action="#">
+                            <input type="text" placeholder="Search here…">
+                            <button class="button-search"><i class="icon-magnifier"></i></button>
+                        </form>
+                    </div>
+                    <div class="mobile-menu-wrap mobile-header-padding-border-2">
+                        <!-- mobile menu start -->
+                        <nav>
+                            <ul class="mobile-menu">
+                                <li class="menu-item-has-children"><a href="/">News</a></li>
+                                <li class="menu-item-has-children "><a href="/gameLoad">Games</a>
+                                <li class="menu-item-has-children"><a href="#">Collection</a>
+                                </li>
+                                <li class="menu-item-has-children"><a href="/communityLoad">Communities</a></li>
+                                <li class="menu-item-has-children"><a href="/storeLoad">Stores</a>
+                                </li>
+                                <li class="menu-item-has-children "><a href="/about-us">About Us</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- mobile menu end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+</body>
+</html>

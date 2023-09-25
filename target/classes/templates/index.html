@@ -1,0 +1,205 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Game Shelf</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- All CSS is here
+	============================================ -->
+
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/signericafat.css">
+    <link rel="stylesheet" href="assets/css/vendor/cerebrisans.css">
+    <link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css">
+    <link rel="stylesheet" href="assets/css/vendor/elegant.css">
+    <link rel="stylesheet" href="assets/css/vendor/linear-icon.css">
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .product-img {
+            height: 190px;
+        }
+    </style>
+
+    <script type="text/javascript" src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/map.js"></script>
+    <script>
+        function initMap() {
+            if (window.initializeMap) {
+                window.initializeMap();
+            }
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3xC4DGlPU8m9Ve671tiz21I_mnpojf10&callback=initMap"></script>
+
+
+
+</head>
+
+<body>
+<div th:replace="reuse/myHeader :: header-content"></div>
+        <div class="slider-area">
+            <div class="container">
+                <div class="hero-slider-active-1 nav-style-2 dot-style-2 dot-style-2-position-1 dot-style-2-active-black">
+                    <div class="single-hero-slider single-animation-wrap slider-height-1 custom-d-flex custom-align-item-center bg-img hm2-slider-bg"
+                         style="background-image:url(/assets/images/slider/2.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+                    <div class="row">
+                            <div class="col-12">
+                                <div class="hero-slider-content-2 slider-animated-1">
+                                    <h1 class="animated">The Battle for <br>Power</h1>
+                                    <p class="animated">
+                                        The nation is on the brink of collapse.
+                                        Will you be the hero or the villain?
+                                    </p>
+                                    <div class="btn-style-2">
+                                        <a class="animated" th:href="@{/gameDetail(vid=2)}">explore now <i class="icon-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-slider-active-1 nav-style-2 dot-style-2 dot-style-2-position-1 dot-style-2-active-black">
+                        <div class="single-hero-slider single-animation-wrap slider-height-1 custom-d-flex custom-align-item-center bg-img hm2-slider-bg"
+                             style="background-image:url(/assets/images/slider/6.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="hero-slider-content-2 slider-animated-1">
+                                        <h1 class="animated"> Embark on an <br>Unforgettable <br> Adventure</h1>
+                                        <p class="animated">
+                                            Follow in the footsteps of Charles Darwin as you uncover <br> the mysteries of
+                                            this breathtaking paradise teeming with life and beauty.
+                                        </p>
+                                        <div class="btn-style-2">
+                                            <a class="animated" th:href="@{/gameDetail(vid=6)}">explore now <i class="icon-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-area pt-115 pb-0">
+            <div class="container">
+                <div class="section-title-2 text-center mb-45">
+                    <h2><span>Most</span> Played</h2>
+                </div>
+                <div class="product-slider-active dot-style-2 dot-style-2-position-static dot-style-2-mrg-1 dot-style-2-active-black">
+                    <div class="product-plr-1" th:each="game, iterStat : ${gameVersionList}" th:if="${iterStat.index > 11 && iterStat.index<20}">
+                        <div class="single-product-wrap mb-35">
+                            <div class="product-img product-img-zoom mb-20">
+                                <a th:href="@{/gameDetail(vid=${game.getVersion().getGameID()})}">
+                                    <img th:src="@{${'img/version/' + game.getVersion().getVerID()+'.jpg'}}" alt="">
+                                </a>
+                            </div>
+                            <div class="product-content-2 text-center">
+                                <h3>
+                                    <a th:href="@{/gameDetail(vid=${game.getVersion().getGameID()})}">
+                                        <span class="blod" th:text="${game.getGame().getGname()}">Game Title</span> </a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-area pt-100 pb-0">
+            <div class="container">
+                <div class="section-title-2 text-center mb-45">
+                    <h2><span>Upcoming</span> </h2>
+                </div>
+                <div class="product-slider-active dot-style-2 dot-style-2-position-static dot-style-2-mrg-1 dot-style-2-active-black">
+                    <div class="product-plr-1" th:each="game, iterStat : ${gameVersionList}" th:if="${iterStat.index < 9}">
+                        <div class="single-product-wrap mb-35">
+                            <div class="product-img product-img-zoom mb-20">
+                                <a th:href="@{/gameDetail(vid=${game.getVersion().getGameID()})}">
+                                    <img th:src="@{${'img/version/' + game.getVersion().getVerID()+'.jpg'}}" alt="">
+                                </a>
+                            </div>
+                            <div class="product-content-2 text-center">
+                                <h3>
+                                    <a href="product-details.html">
+                                        <span class="blod" th:text="${game.getGame().getGname()}">Game Title</span> </a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-area pt-100 pb-0">
+            <div class="container">
+                <div class="section-title-2 text-center mb-45">
+                    <h2><span>Recently</span> Added </h2>
+                </div>
+                    <div class="product-slider-active dot-style-2 dot-style-2-position-static dot-style-2-mrg-1 dot-style-2-active-black">
+                        <div class="product-plr-1" th:each="game, iterStat : ${gameVersionList}" th:if="${iterStat.index < 10 && iterStat.index>4}">
+                            <div class="single-product-wrap mb-35">
+                                <div class="product-img product-img-zoom mb-20">
+                                    <a th:href="@{/gameDetail(vid=${game.getVersion().getGameID()})}">
+                                        <img th:src="@{${'img/version/' + game.getVersion().getVerID()+'.jpg'}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="product-content-2 text-center">
+                                    <h3>
+                                        <a th:href="@{/gameDetail(vid=${game.getVersion().getGameID()})}">
+                                            <span class="blod" th:text="${game.getGame().getGname()}">Game Title</span> </a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="map-area pt-100 pb-100">
+            <div class="container">
+                <div class="section-title-2 text-center mb-45">
+                    <h2><span>Our</span> Communities </h2>
+                </div>
+                <div id="map" style="width: 100%; height: 500px;"></div>
+            </div>
+        </div>
+
+<div th:replace="reuse/footer :: footer-content"></div>
+
+    <!-- All JS is here
+============================================ -->
+
+    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/plugins/slick.js"></script>
+    <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="assets/js/plugins/jquery.instagramfeed.min.js"></script>
+    <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="assets/js/plugins/wow.js"></script>
+    <script src="assets/js/plugins/jquery-ui-touch-punch.js"></script>
+    <script src="assets/js/plugins/jquery-ui.js"></script>
+    <script src="assets/js/plugins/magnific-popup.js"></script>
+    <script src="assets/js/plugins/sticky-sidebar.js"></script>
+    <script src="assets/js/plugins/easyzoom.js"></script>
+    <script src="assets/js/plugins/scrollup.js"></script>
+    <script src="assets/js/plugins/ajax-mail.js"></script>
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above  
+<script src="assets/js/vendor/vendor.min.js"></script>
+<script src="assets/js/plugins/plugins.min.js"></script>  -->
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

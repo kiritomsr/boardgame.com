@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morgan.iterone.mapper.CommunityMapper">
+
+    <select id="queryCommunityList" resultType="com.morgan.iterone.pojo.Community">
+        select * from Community;
+    </select>
+
+    <select id="queryCommunityByName" resultType="com.morgan.iterone.pojo.Community">
+        select * from Community where name=#{name}
+    </select>
+
+    <select id="queryCommunityById" resultType="com.morgan.iterone.pojo.Community">
+        select * from Community where id=#{id}
+    </select>
+
+    <select id="queryCommunitySearch" resultType="com.morgan.iterone.pojo.Community">
+        select * from Community where name like #{search}
+    </select>
+
+    <select id="queryCommunityByCity" resultType="com.morgan.iterone.pojo.Community">
+        select * from Community where city like #{city}
+    </select>
+
+    <select id="queryCommunityByCountry" resultType="com.morgan.iterone.pojo.Community">
+        select * from Community where country like #{country}
+    </select>
+
+    <insert id="addCommunity" parameterType="com.morgan.iterone.pojo.Community">
+        insert into Community (id, country, city, name, intro) values (null,#{country},#{city},#{name},#{intro})
+    </insert>
+
+    <update id="updateCommunity" parameterType="com.morgan.iterone.pojo.Community">
+        update Community set country=#{country}, city=#{city}, name=#{name}, intro=#{intro} where id=#{id}
+    </update>
+
+</mapper>

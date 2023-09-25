@@ -1,0 +1,633 @@
+﻿<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title th:text="${gv.getGame().getGname()}">Default Title</title>
+
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+
+    <!-- All CSS is here
+	============================================ -->
+
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/signericafat.css">
+    <link rel="stylesheet" href="assets/css/vendor/cerebrisans.css">
+    <link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css">
+    <link rel="stylesheet" href="assets/css/vendor/elegant.css">
+    <link rel="stylesheet" href="assets/css/vendor/linear-icon.css">
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above
+    <link rel="stylesheet" href="assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="assets/css/style.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script type="text/javascript" src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+
+    <style>
+        .myA {
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+<div th:replace="reuse/myHeader :: header-content"></div>
+    <div class="main-wrapper">
+        <div class="breadcrumb-area bg-gray">
+            <div class="container">
+                <div class="breadcrumb-content text-center">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/gameLoad">Games</a></li>
+                        <li class="active">Game details </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-details-area pt-120 pb-115">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product-details-tab">
+                            <div class="pro-dec-big-img-slider">
+                                <div class="easyzoom-style" th:each="pic: ${pics}">
+                                    <div class="easyzoom easyzoom--overlay">
+                                        <a href="#">
+                                            <img th:src="@{${'img/version/' + gv.getVersion().getVerID()+'.jpg'}}" alt="">
+                                        </a>
+                                    </div>
+                                    <a class="easyzoom-pop-up img-popup" href="#"><i class="icon-size-fullscreen"></i></a>
+                                </div>
+
+                            </div>
+                            <div class="product-dec-slider-small product-dec-small-style1">
+                                <div class="product-dec-small active" th:each="pic: ${pics}">
+                                    <img th:src="@{${'img/version/' + gv.getVersion().getVerID()+'.jpg'}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product-details-content pro-details-content-mrg">
+                            <h2 th:text="${gv.getGame().getGname()}">Game Title</h2>
+                            <h3 th:text="${gv.getVersion().getVname()}">Version</h3>
+                            <div class="product-details-meta">
+                                <ul>
+                                    <li><span>Category</span> <a href="#" th:text="${gv.getGame().getGenre()}">Banking game</a>
+                                    <li><span>Genre</span> <a href="#" th:text="${gv.getGame().getCategory()}">War /</a>
+                                    <li><span>Designer</span> <a href="#" th:text="${gv.getVersion().getDesigner()}">John Smith</a>
+                                </ul>
+                            </div>
+                            <div class="product-ratting-review-wrap">
+                                <div class="product-ratting-digit-wrap">
+                                    <div class="product-ratting">
+                                        <i class="icon_star" th:if="${gv.getReviews().getSrating()>=1}"></i>
+                                        <i class="icon_star" th:if="${gv.getReviews().getSrating()>=2}"></i>
+                                        <i class="icon_star" th:if="${gv.getReviews().getSrating()>=3}"></i>
+                                        <i class="icon_star" th:if="${gv.getReviews().getSrating()>=4}"></i>
+                                        <i class="icon_star" th:if="${gv.getReviews().getSrating()>=5}"></i>
+
+<!--                                        <i class="icon_star gray" th:if="${gv.getReviews().getSrating()<1}"></i>-->
+<!--                                        <i class="icon_star gray" th:if="${gv.getReviews().getSrating()<2}"></i>-->
+<!--                                        <i class="icon_star gray" th:if="${gv.getReviews().getSrating()<3}"></i>-->
+<!--                                        <i class="icon_star gray" th:if="${gv.getReviews().getSrating()<4}"></i>-->
+<!--                                        <i class="icon_star gray" th:if="${gv.getReviews().getSrating()<5}"></i>-->
+                                    </div>
+                                    <div class="product-digit">
+                                        <span th:text="${gv.getReviews().getSrating()+'.0'}">5.0</span>
+                                    </div>
+                                </div>
+                                <div class="product-review-order">
+                                    <span th:text="${gv.getReviews().getScount()+' Reviews'}">62 Reviews</span>
+<!--                                    <span>242 orders</span>-->
+                                </div>
+                            </div>
+                            <p th:text="${gv.getGame().getIntro()}">In the year 2025, a long-standing border dispute between two neighboring countries has escalated into an all-out war. With both sides heavily armed and unwilling to back down, the conflict has dragged on for months and shows no signs of ending anytime soon.
+                                 Will you be able to outmaneuver and outfight your opponents, or will your forces be defeated on the battlefield?
+                                The fate of your nation rests in your hands.</p>
+
+                            <div class="pro-details-action-wrap pt-30 pb-10">
+                                <div class="pro-details-add-to-cart">
+                                    <a title="Add To Collection" href="#">Add To Collection </a>
+                                </div>
+                                <div class="pro-details-add-to-cart ">
+                                    <a title="Request Change " href="#">Request Change </a>
+                                </div>
+                                <div class="pro-details-action pt-30">
+                                    <a title="Add to Wishlist" href="#"><i class="icon-heart"></i></a>
+<!--                                    <a title="Add to Compare" href="#"><i class="icon-refresh"></i></a>-->
+                                    <a class="social" title="Social" href="#"><i class="icon-share"></i></a>
+
+                                    <div class="product-dec-social">
+                                        <a class="facebook" title="Facebook" href="#"><i class="icon-social-facebook"></i></a>
+                                        <a class="twitter" title="Twitter" href="#"><i class="icon-social-twitter"></i></a>
+                                        <a class="instagram" title="Instagram" href="#"><i class="icon-social-instagram"></i></a>
+                                        <a class="pinterest" title="Pinterest" href="#"><i class="icon-social-pinterest"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro-details-size pt-30">
+<!--                                <span>Genre</span>-->
+                                <div class="pro-details-size-content " >
+                                    <ul>
+                                        <li><a href="#" style="width:100px">label 1</a></li>
+                                        <li><a href="#" style="width:100px">label 2</a></li>
+                                        <li><a href="#" style="width:100px">label 3</a></li>
+                                        <li><a href="#" style="width:100px">label 4</a></li>
+
+                                        <button type="button">+</button>
+
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <div class="buttons">
+                                <a href="#" class="button"><i class="fa fa-users"></i> Community</a></br>
+                                <a href="#" class="button"><i class="fa fa-shopping-cart"></i> Store</a></br>
+                                <a href="#" class="button"><i class="fa fa-comments"></i> Forum</a></br>
+                                <a href="#" class="button"><i class="fa fa-account-tie"></i> Manager</a></br>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="description-review-wrapper pb-110">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="dec-review-topbar nav mb-45">
+                            <a class="active" data-toggle="tab" href="#des-details1">Description</a>
+                            <a data-toggle="tab" href="#des-details2">Resources</a>
+                            <a data-toggle="tab" href="#des-details3">Your friends own this game</a>
+                            <a data-toggle="tab" href="#des-details4">Reviews and Rating </a>
+                        </div>
+                        <div class="tab-content dec-review-bottom">
+                            <div id="des-details1" class="tab-pane active">
+                                <div class="description-wrap">
+
+                                    <p th:text="${gv.getVersion().getDescription()}"></p>
+
+                                </div>
+                            </div>
+                            <div id="des-details2" class="tab-pane active">
+                                <div class="description-wrap">
+
+                                        <a href="#" class="myA" style="margin-left: 180px;margin-right: 20px " >Rules</a>
+                                        <a href="#"  class="myA" style="margin-left: 10px;margin-right: 20px">Trailer Video</a>
+                                        <a href="#"  class="myA" style="margin-left: 10px;margin-right: 20px">Patch notes</a>
+                                        <a href="#"  class="myA" style="margin-left: 10px;margin-right: 20px">Stratagies</a>
+                                    <button type="button">Add Resources</button>
+
+                                </div>
+                            </div>
+                            <div id="des-details3" class="tab-pane">
+                                <div class="specification-wrap table-responsive">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="display: flex; flex-direction: column; align-items: center; margin: 0 5px;">
+                                            <img src="image/bear.png" alt="Circle" width="100" height="100" >
+                                            <a href="#" style="text-decoration: underline;">Bear Brown</a>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <img src="image/frog.png" alt="Circle" width="100" height="100">
+                                            <a href="#" style="text-decoration: underline;">Frog Williams</a>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <img src="image/fox.png" alt="Circle" width="100" height="100">
+                                            <a href="#" style="text-decoration: underline;">Fox Fox</a>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <img src="image/cat.png" alt="Circle" width="100" height="100">
+                                            <a href="#" style="text-decoration: underline;">Cat Meow</a>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <img src="image/panda.png" alt="Circle" width="100" height="100">
+                                            <a href="#" style="text-decoration: underline;">Panda Wang</a>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <img src="image/rabbit.png" alt="Circle" width="100" height="100">
+                                            <a href="#" style="text-decoration: underline;">Rabbit Miller</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="des-details4" class="tab-pane">
+                                <div class="review-wrapper" >
+                                    <h2>Reviews for this game</h2>
+                                    <div class="single-review" th:each="reviewun : ${reviewuns}">
+                                        <div class="review-img">
+                                            <img src="image/cow.png" alt="" width="100" height="100">
+                                        </div>
+                                        <div class="review-content" >
+                                            <div class="review-top-wrap">
+                                                <div class="review-name">
+                                                    <h5 th:text="${reviewun.getUsername()}"><span>}</span> </h5>
+                                                </div>
+
+                                                <div class="review-rating">
+<!--                                                    <i class="yellow icon_star"></i>-->
+<!--                                                    <i class="yellow icon_star"></i>-->
+<!--                                                    <i class="yellow icon_star"></i>-->
+<!--                                                    <i class="yellow icon_star"></i>-->
+<!--                                                    <i class="yellow icon_star"></i>-->
+
+                                                    <i class="yellow icon_star" th:if="${reviewun.getReview().getRating()>=1}"></i>
+                                                    <i class="yellow icon_star" th:if="${reviewun.getReview().getRating()>=2}"></i>
+                                                    <i class="yellow icon_star" th:if="${reviewun.getReview().getRating()>=3}"></i>
+                                                    <i class="yellow icon_star" th:if="${reviewun.getReview().getRating()>=4}"></i>
+                                                    <i class="yellow icon_star" th:if="${reviewun.getReview().getRating()>=5}"></i>
+
+
+
+                                                </div>
+                                            </div>
+                                            <p th:text="${reviewun.getReview().getText()}"></p></br>
+                                            <p th:text="${reviewun.getReview().getRtime()}"></p></br>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="ratting-form-wrapper">
+                                    <span>Add a Review</span>
+                                    <p>Your email address will not be published. Required fields are marked <span>*</span></p>
+                                    <div class="ratting-form">
+                                        <form action="#">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="rating-form-style mb-20">
+                                                        <label>Name <span>*</span></label>
+                                                        <input type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="rating-form-style mb-20">
+                                                        <label>Email <span>*</span></label>
+                                                        <input type="email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="star-box-wrap">
+                                                        <div class="single-ratting-star">
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                            <a href="#"><i class="icon_star"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="rating-form-style mb-20">
+                                                        <label>Your review <span>*</span></label>
+                                                        <textarea name="Your Review"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-submit">
+                                                        <input type="submit" value="Submit">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="related-product pb-115">
+            <div class="container">
+                <div class="section-title mb-45 text-center">
+                    <h2>Similar Games</h2>
+                </div>
+                <div class="related-product-active">
+                    <div class="product-plr-1">
+                        <div class="single-product-wrap">
+                            <div class="product-img product-img-zoom mb-15">
+                                <a href="game-details.html">
+                                    <img src="assets/images/product/product-13.jpg" alt="">
+                                </a>
+                                <div class="product-action-2 tooltip-style-2">
+                                    <button title="Wishlist"><i class="icon-heart"></i></button>
+                                    <button title="Quick View" data-toggle="modal" data-target="#exampleModal"><i class="icon-size-fullscreen icons"></i></button>
+                                    <button title="Compare"><i class="icon-refresh"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-content-wrap-2 text-center">
+                                <div class="product-rating-wrap">
+                                    <div class="product-rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star gray"></i>
+                                    </div>
+                                    <span>(2)</span>
+                                </div>
+                                <h3><a href="game-details.html">Basic Joggin Shorts</a></h3>
+<!--                                <div class="product-price-2">-->
+<!--                                    <span>$20.50</span>-->
+<!--                                </div>-->
+                            </div>
+                            <div class="product-content-wrap-2 product-content-position text-center">
+                                <div class="product-rating-wrap">
+                                    <div class="product-rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star gray"></i>
+                                    </div>
+                                    <span>(2)</span>
+                                </div>
+                                <h3><a href="game-details.html">Basic Joggin Shorts</a></h3>
+<!--                                <div class="product-price-2">-->
+<!--                                    <span>$20.50</span>-->
+<!--                                </div>-->
+                                <div class="pro-add-to-cart">
+                                    <button title="Add To Collection">Add To Collection</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-plr-1">
+                        <div class="single-product-wrap">
+                            <div class="product-img product-img-zoom mb-15">
+                                <a href="game-details.html">
+                                    <img src="assets/images/product/product-14.jpg" alt="">
+                                </a>
+<!--                                <span class="pro-badge left bg-red">-20%</span>-->
+                                <div class="product-action-2 tooltip-style-2">
+                                    <button title="Wishlist"><i class="icon-heart"></i></button>
+                                    <button title="Quick View" data-toggle="modal" data-target="#exampleModal"><i class="icon-size-fullscreen icons"></i></button>
+                                    <button title="Compare"><i class="icon-refresh"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-content-wrap-2 text-center">
+                                <div class="product-rating-wrap">
+                                    <div class="product-rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star gray"></i>
+                                    </div>
+                                    <span>(2)</span>
+                                </div>
+                                <h3><a href="game-details.html">Make Thing Happen T-Shirt</a></h3>
+<!--                                <div class="product-price-2">-->
+<!--                                    <span class="new-price">$35.45</span>-->
+<!--                                    <span class="old-price">$45.80</span>-->
+<!--                                </div>-->
+                            </div>
+                            <div class="product-content-wrap-2 product-content-position text-center">
+                                <div class="product-rating-wrap">
+                                    <div class="product-rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star gray"></i>
+                                    </div>
+                                    <span>(2)</span>
+                                </div>
+                                <h3><a href="game-details.html">Make Thing Happen T-Shirt</a></h3>
+<!--                                <div class="product-price-2">-->
+<!--                                    <span class="new-price">$35.45</span>-->
+<!--                                    <span class="old-price">$45.80</span>-->
+<!--                                </div>-->
+                                <div class="pro-add-to-cart">
+                                    <button title="Add To Collection">Add To Collection</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-plr-1">
+                        <div class="single-product-wrap">
+                            <div class="product-img product-img-zoom mb-15">
+                                <a href="game-details.html">
+                                    <img src="assets/images/product/product-15.jpg" alt="">
+                                </a>
+                                <div class="product-action-2 tooltip-style-2">
+                                    <button title="Wishlist"><i class="icon-heart"></i></button>
+                                    <button title="Quick View" data-toggle="modal" data-target="#exampleModal"><i class="icon-size-fullscreen icons"></i></button>
+                                    <button title="Compare"><i class="icon-refresh"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-content-wrap-2 text-center">
+                                <div class="product-rating-wrap">
+                                    <div class="product-rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star gray"></i>
+                                    </div>
+                                    <span>(2)</span>
+                                </div>
+                                <h3><a href="game-details.html">Basic White Simple Sneaker</a></h3>
+<!--                                <div class="product-price-2">-->
+<!--                                    <span>$35.45</span>-->
+<!--                                </div>-->
+                            </div>
+                            <div class="product-content-wrap-2 product-content-position text-center">
+                                <div class="product-rating-wrap">
+                                    <div class="product-rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star gray"></i>
+                                    </div>
+                                    <span>(2)</span>
+                                </div>
+                                <h3><a href="game-details.html">Basic White Simple Sneaker</a></h3>
+<!--                                <div class="product-price-2">-->
+<!--                                    <span>$35.45</span>-->
+<!--                                </div>-->
+                                <div class="pro-add-to-cart">
+                                    <button title="Add To Collection">Add To Collection</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-plr-1">
+                        <div class="single-product-wrap">
+                            <div class="product-img product-img-zoom mb-15">
+                                <a href="game-details.html">
+                                    <img src="assets/images/product/product-18.jpg" alt="">
+                                </a>
+                                <div class="product-action-2 tooltip-style-2">
+                                    <button title="Wishlist"><i class="icon-heart"></i></button>
+                                    <button title="Quick View" data-toggle="modal" data-target="#exampleModal"><i class="icon-size-fullscreen icons"></i></button>
+                                    <button title="Compare"><i class="icon-refresh"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-content-wrap-2 text-center">
+                                <div class="product-rating-wrap">
+                                    <div class="product-rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star gray"></i>
+                                    </div>
+                                    <span>(2)</span>
+                                </div>
+                                <h3><a href="game-details.html">Tie-up Sute Sandals</a></h3>
+<!--                                <div class="product-price-2">-->
+<!--                                    <span>$55.50</span>-->
+<!--                                </div>-->
+                            </div>
+                            <div class="product-content-wrap-2 product-content-position text-center">
+                                <div class="product-rating-wrap">
+                                    <div class="product-rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star gray"></i>
+                                    </div>
+                                    <span>(2)</span>
+                                </div>
+                                <h3><a href="game-details.html">Tie-up Sute Sandals</a></h3>
+<!--                                <div class="product-price-2">-->
+<!--                                    <span>$55.50</span>-->
+<!--                                </div>-->
+                                <div class="pro-add-to-cart">
+                                    <button title="Add To Collection">Add To Collection</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-plr-1">
+                        <div class="single-product-wrap">
+                            <div class="product-img product-img-zoom mb-15">
+                                <a href="game-details.html">
+                                    <img src="assets/images/product/product-19.jpg" alt="">
+                                </a>
+                                <div class="product-action-2 tooltip-style-2">
+                                    <button title="Wishlist"><i class="icon-heart"></i></button>
+                                    <button title="Quick View" data-toggle="modal" data-target="#exampleModal"><i class="icon-size-fullscreen icons"></i></button>
+                                    <button title="Compare"><i class="icon-refresh"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-content-wrap-2 text-center">
+                                <div class="product-rating-wrap">
+                                    <div class="product-rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star gray"></i>
+                                    </div>
+                                    <span>(2)</span>
+                                </div>
+                                <h3><a href="game-details.html">Faded Grey T-Shirt</a></h3>
+<!--                                <div class="product-price-2">-->
+<!--                                    <span>$65.50</span>-->
+<!--                                </div>-->
+                            </div>
+                            <div class="product-content-wrap-2 product-content-position text-center">
+                                <div class="product-rating-wrap">
+                                    <div class="product-rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star gray"></i>
+                                    </div>
+                                    <span>(2)</span>
+                                </div>
+                                <h3><a href="game-details.html">Faded Grey T-Shirt</a></h3>
+<!--                                <div class="product-price-2">-->
+<!--                                    <span>$65.50</span>-->
+<!--                                </div>-->
+                                <div class="pro-add-to-cart">
+                                    <button title="Add To Collection">Add To Collection</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<div th:replace="reuse/footer :: footer-content"></div>
+
+    <!-- All JS is here
+============================================ -->
+
+    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/plugins/slick.js"></script>
+    <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="assets/js/plugins/jquery.instagramfeed.min.js"></script>
+    <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="assets/js/plugins/wow.js"></script>
+    <script src="assets/js/plugins/jquery-ui-touch-punch.js"></script>
+    <script src="assets/js/plugins/jquery-ui.js"></script>
+    <script src="assets/js/plugins/magnific-popup.js"></script>
+    <script src="assets/js/plugins/sticky-sidebar.js"></script>
+    <script src="assets/js/plugins/easyzoom.js"></script>
+    <script src="assets/js/plugins/scrollup.js"></script>
+    <script src="assets/js/plugins/ajax-mail.js"></script>
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above  
+<script src="assets/js/vendor/vendor.min.js"></script>
+<script src="assets/js/plugins/plugins.min.js"></script>  -->
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

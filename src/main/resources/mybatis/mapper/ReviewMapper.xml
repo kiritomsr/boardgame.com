@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morgan.iterone.mapper.ReviewMapper">
+
+    <select id="queryReviewList" resultType="com.morgan.iterone.pojo.Review">
+        select * from Review;
+    </select>
+
+    <select id="queryReviewById" resultType="com.morgan.iterone.pojo.Review">
+        select * from Review where id=#{id}
+    </select>
+
+    <select id="queryReviewSearch" resultType="com.morgan.iterone.pojo.Review">
+        select * from Review where text like #{search}
+    </select>
+
+    <select id="queryReviewByVerID" resultType="com.morgan.iterone.pojo.Review">
+        select * from Review where verID=#{verID}
+    </select>
+
+    <select id="queryReviewsByVerID" resultType="com.morgan.iterone.pojo.Reviews">
+        select verID, AVG(rating) as srating, COUNT(1) as scount from Review where verID=#{verID} group by verID
+    </select>
+
+    <select id="queryReviewByUserID" resultType="com.morgan.iterone.pojo.Review">
+        select * from Review where userID=#{userID}
+    </select>
+
+    <insert id="addReview" parameterType="com.morgan.iterone.pojo.Review">
+        insert into Review (id, verID, userID, rate, text, rtime) values (null,#{verID},#{userID},#{rate},#{text},#{rtime})
+    </insert>
+
+    <update id="updateReview" parameterType="com.morgan.iterone.pojo.Review">
+        update Review set verID=#{verID}, userID=#{userID}, rate=#{rate}, text=#{text}, rtime=#{rtime} where id=#{id}
+    </update>
+
+</mapper>

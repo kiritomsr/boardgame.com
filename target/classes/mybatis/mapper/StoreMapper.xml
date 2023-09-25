@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morgan.iterone.mapper.StoreMapper">
+
+    <select id="queryStoreList" resultType="com.morgan.iterone.pojo.Store">
+        select * from Store;
+    </select>
+
+    <select id="queryStoreById" resultType="com.morgan.iterone.pojo.Store">
+        select * from Store where id=#{id}
+    </select>
+
+    <select id="queryStoreSearch" resultType="com.morgan.iterone.pojo.Store">
+        select * from Store where seller like #{search}
+    </select>
+
+    <select id="queryStoreByVerID" resultType="com.morgan.iterone.pojo.Store">
+        select * from Store where verID=#{verID}
+    </select>
+
+    <select id="queryStoreByUserID" resultType="com.morgan.iterone.pojo.Store">
+        select * from Store where userID=#{userID}
+    </select>
+
+    <insert id="addStore" parameterType="com.morgan.iterone.pojo.Store">
+        insert into Store (id, storeID, verID, userID, price, seller, link) values (null,#{storeID},#{verID},#{userID},#{price},#{seller},#{link})
+    </insert>
+
+    <update id="updateStore" parameterType="com.morgan.iterone.pojo.Store">
+        update Store set storeID=#{storeID}, verID=#{verID}, userID=#{userID}, price=#{price}, seller=#{seller}, link=#{link} where id=#{id}
+    </update>
+
+</mapper>

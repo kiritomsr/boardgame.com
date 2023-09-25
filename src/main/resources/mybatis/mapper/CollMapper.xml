@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morgan.iterone.mapper.CollMapper">
+
+    <select id="queryCollectionList" resultType="com.morgan.iterone.pojo.Coll">
+        select * from Coll;
+    </select>
+
+    <select id="queryCollectionByName" resultType="com.morgan.iterone.pojo.Coll">
+        select * from Coll where cname=#{cname}
+    </select>
+
+    <select id="queryCollectionById" resultType="com.morgan.iterone.pojo.Coll">
+        select * from Coll where collectID=#{collectID}
+    </select>
+
+    <select id="queryCollectionSearch" resultType="com.morgan.iterone.pojo.Coll">
+        select * from Coll where cname like #{search}
+    </select>
+
+    <select id="queryCollectionByUser" resultType="com.morgan.iterone.pojo.Coll">
+        select * from Coll where userID=#{userID}
+    </select>
+
+    <select id="queryCollectionByVersion" resultType="com.morgan.iterone.pojo.Coll">
+        select * from Coll where verID=#{verID}
+    </select>
+
+    <insert id="addCollection" parameterType="com.morgan.iterone.pojo.Coll">
+        insert into Coll (collectID, userID, verID, privacy, cname, description) values (null,#{userID},#{verID},#{privacy},#{cname},#{description})
+    </insert>
+
+    <update id="updateCollection" parameterType="com.morgan.iterone.pojo.Coll">
+        update Coll set userID=#{userID}, verID=#{verID}, privacy=#{privacy}, cname=#{cname}, description=#{description} where collectID=#{collectID}
+    </update>
+
+</mapper>

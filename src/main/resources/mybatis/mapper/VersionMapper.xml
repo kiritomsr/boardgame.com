@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morgan.iterone.mapper.VersionMapper">
+
+    <select id="queryVersionList" resultType="com.morgan.iterone.pojo.Version">
+        select * from Version
+    </select>
+
+    <select id="queryVersionByVname" resultType="com.morgan.iterone.pojo.Version">
+        select * from Version where vname=#{vname}
+    </select>
+
+    <select id="queryVersionByVerID" resultType="com.morgan.iterone.pojo.Version">
+        select * from Version where verID=#{verID}
+    </select>
+
+    <select id="queryVersionByGameID" resultType="com.morgan.iterone.pojo.Version">
+        select * from Version where gameID=#{gameID}
+    </select>
+
+    <select id="queryVersionSearch" resultType="com.morgan.iterone.pojo.Version">
+        select * from Version where vname like #{search}
+    </select>
+
+</mapper>
